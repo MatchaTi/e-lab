@@ -10,66 +10,83 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
+import { Route as rootRoute } from './routes/__root';
+import { Route as PeminjamanRuanganImport } from './routes/peminjaman-ruangan';
+import { Route as IndexImport } from './routes/index';
 
 // Create/Update Routes
 
+const PeminjamanRuanganRoute = PeminjamanRuanganImport.update({
+    id: '/peminjaman-ruangan',
+    path: '/peminjaman-ruangan',
+    getParentRoute: () => rootRoute,
+} as any);
+
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
+    id: '/',
+    path: '/',
+    getParentRoute: () => rootRoute,
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
+    interface FileRoutesByPath {
+        '/': {
+            id: '/';
+            path: '/';
+            fullPath: '/';
+            preLoaderRoute: typeof IndexImport;
+            parentRoute: typeof rootRoute;
+        };
+        '/peminjaman-ruangan': {
+            id: '/peminjaman-ruangan';
+            path: '/peminjaman-ruangan';
+            fullPath: '/peminjaman-ruangan';
+            preLoaderRoute: typeof PeminjamanRuanganImport;
+            parentRoute: typeof rootRoute;
+        };
     }
-  }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+    '/': typeof IndexRoute;
+    '/peminjaman-ruangan': typeof PeminjamanRuanganRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+    '/': typeof IndexRoute;
+    '/peminjaman-ruangan': typeof PeminjamanRuanganRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
+    __root__: typeof rootRoute;
+    '/': typeof IndexRoute;
+    '/peminjaman-ruangan': typeof PeminjamanRuanganRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
-  fileRoutesById: FileRoutesById
+    fileRoutesByFullPath: FileRoutesByFullPath;
+    fullPaths: '/' | '/peminjaman-ruangan';
+    fileRoutesByTo: FileRoutesByTo;
+    to: '/' | '/peminjaman-ruangan';
+    id: '__root__' | '/' | '/peminjaman-ruangan';
+    fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+    IndexRoute: typeof IndexRoute;
+    PeminjamanRuanganRoute: typeof PeminjamanRuanganRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-}
+    IndexRoute: IndexRoute,
+    PeminjamanRuanganRoute: PeminjamanRuanganRoute,
+};
 
-export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -77,11 +94,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/peminjaman-ruangan"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/peminjaman-ruangan": {
+      "filePath": "peminjaman-ruangan.tsx"
     }
   }
 }
