@@ -15,9 +15,13 @@ import { Route as PeminjamanRuanganImport } from './routes/peminjaman-ruangan'
 import { Route as IndexImport } from './routes/index'
 import { Route as SuperadminIndexImport } from './routes/superadmin/index'
 import { Route as SuperadminRuanganIndexImport } from './routes/superadmin/ruangan/index'
+import { Route as SuperadminAlatLabIndexImport } from './routes/superadmin/alat-lab/index'
 import { Route as SuperadminRuanganTambahRuanganImport } from './routes/superadmin/ruangan/tambah-ruangan'
+import { Route as SuperadminAlatLabTambahAlatLabImport } from './routes/superadmin/alat-lab/tambah-alat-lab'
 import { Route as SuperadminRuanganUpdateRuanganIdImport } from './routes/superadmin/ruangan/update-ruangan.$id'
 import { Route as SuperadminRuanganDetailRuanganIdImport } from './routes/superadmin/ruangan/detail-ruangan.$id'
+import { Route as SuperadminAlatLabUpdateAlatLabIdImport } from './routes/superadmin/alat-lab/update-alat-lab.$id'
+import { Route as SuperadminAlatLabDetailAlatLabIdImport } from './routes/superadmin/alat-lab/detail-alat-lab.$id'
 
 // Create/Update Routes
 
@@ -45,10 +49,23 @@ const SuperadminRuanganIndexRoute = SuperadminRuanganIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SuperadminAlatLabIndexRoute = SuperadminAlatLabIndexImport.update({
+  id: '/superadmin/alat-lab/',
+  path: '/superadmin/alat-lab/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const SuperadminRuanganTambahRuanganRoute =
   SuperadminRuanganTambahRuanganImport.update({
     id: '/superadmin/ruangan/tambah-ruangan',
     path: '/superadmin/ruangan/tambah-ruangan',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const SuperadminAlatLabTambahAlatLabRoute =
+  SuperadminAlatLabTambahAlatLabImport.update({
+    id: '/superadmin/alat-lab/tambah-alat-lab',
+    path: '/superadmin/alat-lab/tambah-alat-lab',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -63,6 +80,20 @@ const SuperadminRuanganDetailRuanganIdRoute =
   SuperadminRuanganDetailRuanganIdImport.update({
     id: '/superadmin/ruangan/detail-ruangan/$id',
     path: '/superadmin/ruangan/detail-ruangan/$id',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const SuperadminAlatLabUpdateAlatLabIdRoute =
+  SuperadminAlatLabUpdateAlatLabIdImport.update({
+    id: '/superadmin/alat-lab/update-alat-lab/$id',
+    path: '/superadmin/alat-lab/update-alat-lab/$id',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const SuperadminAlatLabDetailAlatLabIdRoute =
+  SuperadminAlatLabDetailAlatLabIdImport.update({
+    id: '/superadmin/alat-lab/detail-alat-lab/$id',
+    path: '/superadmin/alat-lab/detail-alat-lab/$id',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -91,6 +122,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SuperadminIndexImport
       parentRoute: typeof rootRoute
     }
+    '/superadmin/alat-lab/tambah-alat-lab': {
+      id: '/superadmin/alat-lab/tambah-alat-lab'
+      path: '/superadmin/alat-lab/tambah-alat-lab'
+      fullPath: '/superadmin/alat-lab/tambah-alat-lab'
+      preLoaderRoute: typeof SuperadminAlatLabTambahAlatLabImport
+      parentRoute: typeof rootRoute
+    }
     '/superadmin/ruangan/tambah-ruangan': {
       id: '/superadmin/ruangan/tambah-ruangan'
       path: '/superadmin/ruangan/tambah-ruangan'
@@ -98,11 +136,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SuperadminRuanganTambahRuanganImport
       parentRoute: typeof rootRoute
     }
+    '/superadmin/alat-lab/': {
+      id: '/superadmin/alat-lab/'
+      path: '/superadmin/alat-lab'
+      fullPath: '/superadmin/alat-lab'
+      preLoaderRoute: typeof SuperadminAlatLabIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/superadmin/ruangan/': {
       id: '/superadmin/ruangan/'
       path: '/superadmin/ruangan'
       fullPath: '/superadmin/ruangan'
       preLoaderRoute: typeof SuperadminRuanganIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/alat-lab/detail-alat-lab/$id': {
+      id: '/superadmin/alat-lab/detail-alat-lab/$id'
+      path: '/superadmin/alat-lab/detail-alat-lab/$id'
+      fullPath: '/superadmin/alat-lab/detail-alat-lab/$id'
+      preLoaderRoute: typeof SuperadminAlatLabDetailAlatLabIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/alat-lab/update-alat-lab/$id': {
+      id: '/superadmin/alat-lab/update-alat-lab/$id'
+      path: '/superadmin/alat-lab/update-alat-lab/$id'
+      fullPath: '/superadmin/alat-lab/update-alat-lab/$id'
+      preLoaderRoute: typeof SuperadminAlatLabUpdateAlatLabIdImport
       parentRoute: typeof rootRoute
     }
     '/superadmin/ruangan/detail-ruangan/$id': {
@@ -128,8 +187,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
   '/superadmin': typeof SuperadminIndexRoute
+  '/superadmin/alat-lab/tambah-alat-lab': typeof SuperadminAlatLabTambahAlatLabRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
+  '/superadmin/alat-lab': typeof SuperadminAlatLabIndexRoute
   '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
+  '/superadmin/alat-lab/detail-alat-lab/$id': typeof SuperadminAlatLabDetailAlatLabIdRoute
+  '/superadmin/alat-lab/update-alat-lab/$id': typeof SuperadminAlatLabUpdateAlatLabIdRoute
   '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -138,8 +201,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
   '/superadmin': typeof SuperadminIndexRoute
+  '/superadmin/alat-lab/tambah-alat-lab': typeof SuperadminAlatLabTambahAlatLabRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
+  '/superadmin/alat-lab': typeof SuperadminAlatLabIndexRoute
   '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
+  '/superadmin/alat-lab/detail-alat-lab/$id': typeof SuperadminAlatLabDetailAlatLabIdRoute
+  '/superadmin/alat-lab/update-alat-lab/$id': typeof SuperadminAlatLabUpdateAlatLabIdRoute
   '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -149,8 +216,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
   '/superadmin/': typeof SuperadminIndexRoute
+  '/superadmin/alat-lab/tambah-alat-lab': typeof SuperadminAlatLabTambahAlatLabRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
+  '/superadmin/alat-lab/': typeof SuperadminAlatLabIndexRoute
   '/superadmin/ruangan/': typeof SuperadminRuanganIndexRoute
+  '/superadmin/alat-lab/detail-alat-lab/$id': typeof SuperadminAlatLabDetailAlatLabIdRoute
+  '/superadmin/alat-lab/update-alat-lab/$id': typeof SuperadminAlatLabUpdateAlatLabIdRoute
   '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -161,8 +232,12 @@ export interface FileRouteTypes {
     | '/'
     | '/peminjaman-ruangan'
     | '/superadmin'
+    | '/superadmin/alat-lab/tambah-alat-lab'
     | '/superadmin/ruangan/tambah-ruangan'
+    | '/superadmin/alat-lab'
     | '/superadmin/ruangan'
+    | '/superadmin/alat-lab/detail-alat-lab/$id'
+    | '/superadmin/alat-lab/update-alat-lab/$id'
     | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -170,8 +245,12 @@ export interface FileRouteTypes {
     | '/'
     | '/peminjaman-ruangan'
     | '/superadmin'
+    | '/superadmin/alat-lab/tambah-alat-lab'
     | '/superadmin/ruangan/tambah-ruangan'
+    | '/superadmin/alat-lab'
     | '/superadmin/ruangan'
+    | '/superadmin/alat-lab/detail-alat-lab/$id'
+    | '/superadmin/alat-lab/update-alat-lab/$id'
     | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   id:
@@ -179,8 +258,12 @@ export interface FileRouteTypes {
     | '/'
     | '/peminjaman-ruangan'
     | '/superadmin/'
+    | '/superadmin/alat-lab/tambah-alat-lab'
     | '/superadmin/ruangan/tambah-ruangan'
+    | '/superadmin/alat-lab/'
     | '/superadmin/ruangan/'
+    | '/superadmin/alat-lab/detail-alat-lab/$id'
+    | '/superadmin/alat-lab/update-alat-lab/$id'
     | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   fileRoutesById: FileRoutesById
@@ -190,8 +273,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PeminjamanRuanganRoute: typeof PeminjamanRuanganRoute
   SuperadminIndexRoute: typeof SuperadminIndexRoute
+  SuperadminAlatLabTambahAlatLabRoute: typeof SuperadminAlatLabTambahAlatLabRoute
   SuperadminRuanganTambahRuanganRoute: typeof SuperadminRuanganTambahRuanganRoute
+  SuperadminAlatLabIndexRoute: typeof SuperadminAlatLabIndexRoute
   SuperadminRuanganIndexRoute: typeof SuperadminRuanganIndexRoute
+  SuperadminAlatLabDetailAlatLabIdRoute: typeof SuperadminAlatLabDetailAlatLabIdRoute
+  SuperadminAlatLabUpdateAlatLabIdRoute: typeof SuperadminAlatLabUpdateAlatLabIdRoute
   SuperadminRuanganDetailRuanganIdRoute: typeof SuperadminRuanganDetailRuanganIdRoute
   SuperadminRuanganUpdateRuanganIdRoute: typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -200,8 +287,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PeminjamanRuanganRoute: PeminjamanRuanganRoute,
   SuperadminIndexRoute: SuperadminIndexRoute,
+  SuperadminAlatLabTambahAlatLabRoute: SuperadminAlatLabTambahAlatLabRoute,
   SuperadminRuanganTambahRuanganRoute: SuperadminRuanganTambahRuanganRoute,
+  SuperadminAlatLabIndexRoute: SuperadminAlatLabIndexRoute,
   SuperadminRuanganIndexRoute: SuperadminRuanganIndexRoute,
+  SuperadminAlatLabDetailAlatLabIdRoute: SuperadminAlatLabDetailAlatLabIdRoute,
+  SuperadminAlatLabUpdateAlatLabIdRoute: SuperadminAlatLabUpdateAlatLabIdRoute,
   SuperadminRuanganDetailRuanganIdRoute: SuperadminRuanganDetailRuanganIdRoute,
   SuperadminRuanganUpdateRuanganIdRoute: SuperadminRuanganUpdateRuanganIdRoute,
 }
@@ -219,8 +310,12 @@ export const routeTree = rootRoute
         "/",
         "/peminjaman-ruangan",
         "/superadmin/",
+        "/superadmin/alat-lab/tambah-alat-lab",
         "/superadmin/ruangan/tambah-ruangan",
+        "/superadmin/alat-lab/",
         "/superadmin/ruangan/",
+        "/superadmin/alat-lab/detail-alat-lab/$id",
+        "/superadmin/alat-lab/update-alat-lab/$id",
         "/superadmin/ruangan/detail-ruangan/$id",
         "/superadmin/ruangan/update-ruangan/$id"
       ]
@@ -234,11 +329,23 @@ export const routeTree = rootRoute
     "/superadmin/": {
       "filePath": "superadmin/index.tsx"
     },
+    "/superadmin/alat-lab/tambah-alat-lab": {
+      "filePath": "superadmin/alat-lab/tambah-alat-lab.tsx"
+    },
     "/superadmin/ruangan/tambah-ruangan": {
       "filePath": "superadmin/ruangan/tambah-ruangan.tsx"
     },
+    "/superadmin/alat-lab/": {
+      "filePath": "superadmin/alat-lab/index.tsx"
+    },
     "/superadmin/ruangan/": {
       "filePath": "superadmin/ruangan/index.tsx"
+    },
+    "/superadmin/alat-lab/detail-alat-lab/$id": {
+      "filePath": "superadmin/alat-lab/detail-alat-lab.$id.tsx"
+    },
+    "/superadmin/alat-lab/update-alat-lab/$id": {
+      "filePath": "superadmin/alat-lab/update-alat-lab.$id.tsx"
     },
     "/superadmin/ruangan/detail-ruangan/$id": {
       "filePath": "superadmin/ruangan/detail-ruangan.$id.tsx"
