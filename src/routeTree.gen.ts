@@ -10,178 +10,182 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root';
-import { Route as PeminjamanRuanganImport } from './routes/peminjaman-ruangan';
-import { Route as IndexImport } from './routes/index';
-import { Route as SuperadminIndexImport } from './routes/superadmin/index';
-import { Route as SuperadminRuanganIndexImport } from './routes/superadmin/ruangan/index';
-import { Route as SuperadminRuanganUpdateRuanganImport } from './routes/superadmin/ruangan/update-ruangan';
-import { Route as SuperadminRuanganTambahRuanganImport } from './routes/superadmin/ruangan/tambah-ruangan';
+import { Route as rootRoute } from './routes/__root'
+import { Route as PeminjamanRuanganImport } from './routes/peminjaman-ruangan'
+import { Route as IndexImport } from './routes/index'
+import { Route as SuperadminIndexImport } from './routes/superadmin/index'
+import { Route as SuperadminRuanganIndexImport } from './routes/superadmin/ruangan/index'
+import { Route as SuperadminRuanganTambahRuanganImport } from './routes/superadmin/ruangan/tambah-ruangan'
+import { Route as SuperadminRuanganUpdateRuanganIdImport } from './routes/superadmin/ruangan/update-ruangan.$id'
 
 // Create/Update Routes
 
 const PeminjamanRuanganRoute = PeminjamanRuanganImport.update({
-    id: '/peminjaman-ruangan',
-    path: '/peminjaman-ruangan',
-    getParentRoute: () => rootRoute,
-} as any);
+  id: '/peminjaman-ruangan',
+  path: '/peminjaman-ruangan',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => rootRoute,
-} as any);
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SuperadminIndexRoute = SuperadminIndexImport.update({
-    id: '/superadmin/',
-    path: '/superadmin/',
-    getParentRoute: () => rootRoute,
-} as any);
+  id: '/superadmin/',
+  path: '/superadmin/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SuperadminRuanganIndexRoute = SuperadminRuanganIndexImport.update({
-    id: '/superadmin/ruangan/',
-    path: '/superadmin/ruangan/',
-    getParentRoute: () => rootRoute,
-} as any);
+  id: '/superadmin/ruangan/',
+  path: '/superadmin/ruangan/',
+  getParentRoute: () => rootRoute,
+} as any)
 
-const SuperadminRuanganUpdateRuanganRoute = SuperadminRuanganUpdateRuanganImport.update({
-    id: '/superadmin/ruangan/update-ruangan',
-    path: '/superadmin/ruangan/update-ruangan',
-    getParentRoute: () => rootRoute,
-} as any);
-
-const SuperadminRuanganTambahRuanganRoute = SuperadminRuanganTambahRuanganImport.update({
+const SuperadminRuanganTambahRuanganRoute =
+  SuperadminRuanganTambahRuanganImport.update({
     id: '/superadmin/ruangan/tambah-ruangan',
     path: '/superadmin/ruangan/tambah-ruangan',
     getParentRoute: () => rootRoute,
-} as any);
+  } as any)
+
+const SuperadminRuanganUpdateRuanganIdRoute =
+  SuperadminRuanganUpdateRuanganIdImport.update({
+    id: '/superadmin/ruangan/update-ruangan/$id',
+    path: '/superadmin/ruangan/update-ruangan/$id',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
-    interface FileRoutesByPath {
-        '/': {
-            id: '/';
-            path: '/';
-            fullPath: '/';
-            preLoaderRoute: typeof IndexImport;
-            parentRoute: typeof rootRoute;
-        };
-        '/peminjaman-ruangan': {
-            id: '/peminjaman-ruangan';
-            path: '/peminjaman-ruangan';
-            fullPath: '/peminjaman-ruangan';
-            preLoaderRoute: typeof PeminjamanRuanganImport;
-            parentRoute: typeof rootRoute;
-        };
-        '/superadmin/': {
-            id: '/superadmin/';
-            path: '/superadmin';
-            fullPath: '/superadmin';
-            preLoaderRoute: typeof SuperadminIndexImport;
-            parentRoute: typeof rootRoute;
-        };
-        '/superadmin/ruangan/tambah-ruangan': {
-            id: '/superadmin/ruangan/tambah-ruangan';
-            path: '/superadmin/ruangan/tambah-ruangan';
-            fullPath: '/superadmin/ruangan/tambah-ruangan';
-            preLoaderRoute: typeof SuperadminRuanganTambahRuanganImport;
-            parentRoute: typeof rootRoute;
-        };
-        '/superadmin/ruangan/update-ruangan': {
-            id: '/superadmin/ruangan/update-ruangan';
-            path: '/superadmin/ruangan/update-ruangan';
-            fullPath: '/superadmin/ruangan/update-ruangan';
-            preLoaderRoute: typeof SuperadminRuanganUpdateRuanganImport;
-            parentRoute: typeof rootRoute;
-        };
-        '/superadmin/ruangan/': {
-            id: '/superadmin/ruangan/';
-            path: '/superadmin/ruangan';
-            fullPath: '/superadmin/ruangan';
-            preLoaderRoute: typeof SuperadminRuanganIndexImport;
-            parentRoute: typeof rootRoute;
-        };
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
     }
+    '/peminjaman-ruangan': {
+      id: '/peminjaman-ruangan'
+      path: '/peminjaman-ruangan'
+      fullPath: '/peminjaman-ruangan'
+      preLoaderRoute: typeof PeminjamanRuanganImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/': {
+      id: '/superadmin/'
+      path: '/superadmin'
+      fullPath: '/superadmin'
+      preLoaderRoute: typeof SuperadminIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/ruangan/tambah-ruangan': {
+      id: '/superadmin/ruangan/tambah-ruangan'
+      path: '/superadmin/ruangan/tambah-ruangan'
+      fullPath: '/superadmin/ruangan/tambah-ruangan'
+      preLoaderRoute: typeof SuperadminRuanganTambahRuanganImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/ruangan/': {
+      id: '/superadmin/ruangan/'
+      path: '/superadmin/ruangan'
+      fullPath: '/superadmin/ruangan'
+      preLoaderRoute: typeof SuperadminRuanganIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/ruangan/update-ruangan/$id': {
+      id: '/superadmin/ruangan/update-ruangan/$id'
+      path: '/superadmin/ruangan/update-ruangan/$id'
+      fullPath: '/superadmin/ruangan/update-ruangan/$id'
+      preLoaderRoute: typeof SuperadminRuanganUpdateRuanganIdImport
+      parentRoute: typeof rootRoute
+    }
+  }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-    '/': typeof IndexRoute;
-    '/peminjaman-ruangan': typeof PeminjamanRuanganRoute;
-    '/superadmin': typeof SuperadminIndexRoute;
-    '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute;
-    '/superadmin/ruangan/update-ruangan': typeof SuperadminRuanganUpdateRuanganRoute;
-    '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute;
+  '/': typeof IndexRoute
+  '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
+  '/superadmin': typeof SuperadminIndexRoute
+  '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
+  '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
+  '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
 export interface FileRoutesByTo {
-    '/': typeof IndexRoute;
-    '/peminjaman-ruangan': typeof PeminjamanRuanganRoute;
-    '/superadmin': typeof SuperadminIndexRoute;
-    '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute;
-    '/superadmin/ruangan/update-ruangan': typeof SuperadminRuanganUpdateRuanganRoute;
-    '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute;
+  '/': typeof IndexRoute
+  '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
+  '/superadmin': typeof SuperadminIndexRoute
+  '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
+  '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
+  '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
 export interface FileRoutesById {
-    __root__: typeof rootRoute;
-    '/': typeof IndexRoute;
-    '/peminjaman-ruangan': typeof PeminjamanRuanganRoute;
-    '/superadmin/': typeof SuperadminIndexRoute;
-    '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute;
-    '/superadmin/ruangan/update-ruangan': typeof SuperadminRuanganUpdateRuanganRoute;
-    '/superadmin/ruangan/': typeof SuperadminRuanganIndexRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
+  '/superadmin/': typeof SuperadminIndexRoute
+  '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
+  '/superadmin/ruangan/': typeof SuperadminRuanganIndexRoute
+  '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
 export interface FileRouteTypes {
-    fileRoutesByFullPath: FileRoutesByFullPath;
-    fullPaths:
-        | '/'
-        | '/peminjaman-ruangan'
-        | '/superadmin'
-        | '/superadmin/ruangan/tambah-ruangan'
-        | '/superadmin/ruangan/update-ruangan'
-        | '/superadmin/ruangan';
-    fileRoutesByTo: FileRoutesByTo;
-    to:
-        | '/'
-        | '/peminjaman-ruangan'
-        | '/superadmin'
-        | '/superadmin/ruangan/tambah-ruangan'
-        | '/superadmin/ruangan/update-ruangan'
-        | '/superadmin/ruangan';
-    id:
-        | '__root__'
-        | '/'
-        | '/peminjaman-ruangan'
-        | '/superadmin/'
-        | '/superadmin/ruangan/tambah-ruangan'
-        | '/superadmin/ruangan/update-ruangan'
-        | '/superadmin/ruangan/';
-    fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/peminjaman-ruangan'
+    | '/superadmin'
+    | '/superadmin/ruangan/tambah-ruangan'
+    | '/superadmin/ruangan'
+    | '/superadmin/ruangan/update-ruangan/$id'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/peminjaman-ruangan'
+    | '/superadmin'
+    | '/superadmin/ruangan/tambah-ruangan'
+    | '/superadmin/ruangan'
+    | '/superadmin/ruangan/update-ruangan/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/peminjaman-ruangan'
+    | '/superadmin/'
+    | '/superadmin/ruangan/tambah-ruangan'
+    | '/superadmin/ruangan/'
+    | '/superadmin/ruangan/update-ruangan/$id'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-    IndexRoute: typeof IndexRoute;
-    PeminjamanRuanganRoute: typeof PeminjamanRuanganRoute;
-    SuperadminIndexRoute: typeof SuperadminIndexRoute;
-    SuperadminRuanganTambahRuanganRoute: typeof SuperadminRuanganTambahRuanganRoute;
-    SuperadminRuanganUpdateRuanganRoute: typeof SuperadminRuanganUpdateRuanganRoute;
-    SuperadminRuanganIndexRoute: typeof SuperadminRuanganIndexRoute;
+  IndexRoute: typeof IndexRoute
+  PeminjamanRuanganRoute: typeof PeminjamanRuanganRoute
+  SuperadminIndexRoute: typeof SuperadminIndexRoute
+  SuperadminRuanganTambahRuanganRoute: typeof SuperadminRuanganTambahRuanganRoute
+  SuperadminRuanganIndexRoute: typeof SuperadminRuanganIndexRoute
+  SuperadminRuanganUpdateRuanganIdRoute: typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-    IndexRoute: IndexRoute,
-    PeminjamanRuanganRoute: PeminjamanRuanganRoute,
-    SuperadminIndexRoute: SuperadminIndexRoute,
-    SuperadminRuanganTambahRuanganRoute: SuperadminRuanganTambahRuanganRoute,
-    SuperadminRuanganUpdateRuanganRoute: SuperadminRuanganUpdateRuanganRoute,
-    SuperadminRuanganIndexRoute: SuperadminRuanganIndexRoute,
-};
+  IndexRoute: IndexRoute,
+  PeminjamanRuanganRoute: PeminjamanRuanganRoute,
+  SuperadminIndexRoute: SuperadminIndexRoute,
+  SuperadminRuanganTambahRuanganRoute: SuperadminRuanganTambahRuanganRoute,
+  SuperadminRuanganIndexRoute: SuperadminRuanganIndexRoute,
+  SuperadminRuanganUpdateRuanganIdRoute: SuperadminRuanganUpdateRuanganIdRoute,
+}
 
-export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -193,8 +197,8 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
         "/peminjaman-ruangan",
         "/superadmin/",
         "/superadmin/ruangan/tambah-ruangan",
-        "/superadmin/ruangan/update-ruangan",
-        "/superadmin/ruangan/"
+        "/superadmin/ruangan/",
+        "/superadmin/ruangan/update-ruangan/$id"
       ]
     },
     "/": {
@@ -209,11 +213,11 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "/superadmin/ruangan/tambah-ruangan": {
       "filePath": "superadmin/ruangan/tambah-ruangan.tsx"
     },
-    "/superadmin/ruangan/update-ruangan": {
-      "filePath": "superadmin/ruangan/update-ruangan.tsx"
-    },
     "/superadmin/ruangan/": {
       "filePath": "superadmin/ruangan/index.tsx"
+    },
+    "/superadmin/ruangan/update-ruangan/$id": {
+      "filePath": "superadmin/ruangan/update-ruangan.$id.tsx"
     }
   }
 }
