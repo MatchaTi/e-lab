@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { createFileRoute } from '@tanstack/react-router';
+import clsx from 'clsx';
 import StaffLayout from '@/components/StaffLayout';
 import Fieldset from '@/components/Fieldset';
 
@@ -7,9 +8,12 @@ export const Route = createFileRoute('/superadmin/ruangan/detail-ruangan/$id')({
     component: RouteComponent,
 });
 
+type typeStatus = 'available' | 'unavailable';
 function RouteComponent() {
     const { id } = Route.useParams();
     console.log('Detail room with ID:', id);
+    // This would typically come from an API call based on the room ID
+    const status: typeStatus = 'available'; // For now hardcoded, but should be dynamic
 
     // TODO: Fetch existing room data using the ID and populate the form fields
     // TODO: Handle form submission to update the room data
@@ -57,6 +61,17 @@ function RouteComponent() {
                         <Fieldset.Legend>Preview Ruangan</Fieldset.Legend>
                         <Fieldset.Body className='w-full textarea field-sizing-content'>
                             <span>Preview Ruangan</span>
+                        </Fieldset.Body>
+                    </Fieldset>
+
+                    <Fieldset className='w-full lg:col-span-2'>
+                        <Fieldset.Legend>Status</Fieldset.Legend>
+                        <Fieldset.Body
+                            // TODO: fix this next time
+                            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                            className={clsx('alert w-full', status === 'available' ? 'alert-success' : 'alert-error')}
+                        >
+                            <span>Tersedia</span>
                         </Fieldset.Body>
                     </Fieldset>
                 </section>

@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import Input from '@/components/Input';
 import StaffLayout from '@/components/StaffLayout';
 import Textarea from '@/components/Textarea';
+import Fieldset from '@/components/Fieldset';
 
 export const Route = createFileRoute('/superadmin/ruangan/update-ruangan/$id')({
     component: RouteComponent,
@@ -46,6 +47,19 @@ function RouteComponent() {
                     <div className='lg:col-span-2'>
                         <Textarea label='Deskripsi' placeholder='Deskripsikan Ruangan' />
                     </div>
+
+                    <Fieldset>
+                        <Fieldset.Legend>Status</Fieldset.Legend>
+                        <Fieldset.Body>
+                            <select className='w-full select' required>
+                                <option hidden>Pilih Status</option>
+                                <option value='available'>Tersedia</option>
+                                <option value='unavailable'>Tidak Tersedia</option>
+                            </select>
+                        </Fieldset.Body>
+                    </Fieldset>
+
+                    <div></div>
 
                     <button className='btn btn-primary w-fit'>
                         <Icon icon='akar-icons:edit' />
