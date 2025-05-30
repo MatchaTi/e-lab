@@ -10,7 +10,7 @@ export default function Fieldset({ children, className }: FieldsetProps) {
 }
 
 function FieldsetLegend({ children, className }: { children: React.ReactNode; className?: string }) {
-    return <legend className={clsx('fieldset-legend', className)}>{children}</legend>;
+    return <legend className={clsx('fieldset-legend text-sm', className)}>{children}</legend>;
 }
 
 function FieldsetLabel({ children }: { children: React.ReactNode }) {
