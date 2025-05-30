@@ -9,6 +9,7 @@ export const Route = createFileRoute('/superadmin/ruangan/detail-ruangan/$id')({
 });
 
 type typeStatus = 'available' | 'unavailable';
+
 function RouteComponent() {
     const { id } = Route.useParams();
     console.log('Detail room with ID:', id);
