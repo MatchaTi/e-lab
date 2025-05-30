@@ -1,0 +1,39 @@
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { createFileRoute } from '@tanstack/react-router';
+import Input from '@/components/Input';
+import StaffLayout from '@/components/StaffLayout';
+import Textarea from '@/components/Textarea';
+
+export const Route = createFileRoute('/superadmin/kategori-modul/update-kategori-modul/$id')({
+    component: RouteComponent,
+});
+
+function RouteComponent() {
+    const { id } = Route.useParams();
+    console.log('Update kategori modul with ID:', id);
+
+    return (
+        <StaffLayout>
+            <main className='p-6 space-y-6 rounded-lg shadow-lg bg-base-200 shadow-base-content/5'>
+                <h1 className='text-3xl font-bold'>Form Update Kategori Modul</h1>
+                <p>Halaman untuk memperbarui data kategori modul pada sistem.</p>
+
+                <form action='' className='grid gap-6 lg:grid-cols-2'>
+                    <div className='lg:col-span-2'>
+                        <Input label='Nama Kategori' placeholder='Nama Kategori' icon='tabler:category-plus' />
+                        {/* TODO: error handling message */}
+                    </div>
+
+                    <div className='lg:col-span-2'>
+                        <Textarea label='Deskripsi' placeholder='Deskripsikan Kategori' />
+                    </div>
+
+                    <button className='btn btn-primary w-fit'>
+                        <Icon icon='akar-icons:edit' />
+                        <span>Update</span>
+                    </button>
+                </form>
+            </main>
+        </StaffLayout>
+    );
+}
