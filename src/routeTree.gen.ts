@@ -15,11 +15,15 @@ import { Route as PeminjamanRuanganImport } from './routes/peminjaman-ruangan'
 import { Route as IndexImport } from './routes/index'
 import { Route as SuperadminIndexImport } from './routes/superadmin/index'
 import { Route as SuperadminRuanganIndexImport } from './routes/superadmin/ruangan/index'
+import { Route as SuperadminBadgeIndexImport } from './routes/superadmin/badge/index'
 import { Route as SuperadminAlatLabIndexImport } from './routes/superadmin/alat-lab/index'
 import { Route as SuperadminRuanganTambahRuanganImport } from './routes/superadmin/ruangan/tambah-ruangan'
+import { Route as SuperadminBadgeTambahBadgeImport } from './routes/superadmin/badge/tambah-badge'
 import { Route as SuperadminAlatLabTambahAlatLabImport } from './routes/superadmin/alat-lab/tambah-alat-lab'
 import { Route as SuperadminRuanganUpdateRuanganIdImport } from './routes/superadmin/ruangan/update-ruangan.$id'
 import { Route as SuperadminRuanganDetailRuanganIdImport } from './routes/superadmin/ruangan/detail-ruangan.$id'
+import { Route as SuperadminBadgeUpdateBadgeIdImport } from './routes/superadmin/badge/update-badge.$id'
+import { Route as SuperadminBadgeDetailBadgeIdImport } from './routes/superadmin/badge/detail-badge.$id'
 import { Route as SuperadminAlatLabUpdateAlatLabIdImport } from './routes/superadmin/alat-lab/update-alat-lab.$id'
 import { Route as SuperadminAlatLabDetailAlatLabIdImport } from './routes/superadmin/alat-lab/detail-alat-lab.$id'
 
@@ -49,6 +53,12 @@ const SuperadminRuanganIndexRoute = SuperadminRuanganIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SuperadminBadgeIndexRoute = SuperadminBadgeIndexImport.update({
+  id: '/superadmin/badge/',
+  path: '/superadmin/badge/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const SuperadminAlatLabIndexRoute = SuperadminAlatLabIndexImport.update({
   id: '/superadmin/alat-lab/',
   path: '/superadmin/alat-lab/',
@@ -61,6 +71,14 @@ const SuperadminRuanganTambahRuanganRoute =
     path: '/superadmin/ruangan/tambah-ruangan',
     getParentRoute: () => rootRoute,
   } as any)
+
+const SuperadminBadgeTambahBadgeRoute = SuperadminBadgeTambahBadgeImport.update(
+  {
+    id: '/superadmin/badge/tambah-badge',
+    path: '/superadmin/badge/tambah-badge',
+    getParentRoute: () => rootRoute,
+  } as any,
+)
 
 const SuperadminAlatLabTambahAlatLabRoute =
   SuperadminAlatLabTambahAlatLabImport.update({
@@ -80,6 +98,20 @@ const SuperadminRuanganDetailRuanganIdRoute =
   SuperadminRuanganDetailRuanganIdImport.update({
     id: '/superadmin/ruangan/detail-ruangan/$id',
     path: '/superadmin/ruangan/detail-ruangan/$id',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const SuperadminBadgeUpdateBadgeIdRoute =
+  SuperadminBadgeUpdateBadgeIdImport.update({
+    id: '/superadmin/badge/update-badge/$id',
+    path: '/superadmin/badge/update-badge/$id',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const SuperadminBadgeDetailBadgeIdRoute =
+  SuperadminBadgeDetailBadgeIdImport.update({
+    id: '/superadmin/badge/detail-badge/$id',
+    path: '/superadmin/badge/detail-badge/$id',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -129,6 +161,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SuperadminAlatLabTambahAlatLabImport
       parentRoute: typeof rootRoute
     }
+    '/superadmin/badge/tambah-badge': {
+      id: '/superadmin/badge/tambah-badge'
+      path: '/superadmin/badge/tambah-badge'
+      fullPath: '/superadmin/badge/tambah-badge'
+      preLoaderRoute: typeof SuperadminBadgeTambahBadgeImport
+      parentRoute: typeof rootRoute
+    }
     '/superadmin/ruangan/tambah-ruangan': {
       id: '/superadmin/ruangan/tambah-ruangan'
       path: '/superadmin/ruangan/tambah-ruangan'
@@ -141,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/superadmin/alat-lab'
       fullPath: '/superadmin/alat-lab'
       preLoaderRoute: typeof SuperadminAlatLabIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/badge/': {
+      id: '/superadmin/badge/'
+      path: '/superadmin/badge'
+      fullPath: '/superadmin/badge'
+      preLoaderRoute: typeof SuperadminBadgeIndexImport
       parentRoute: typeof rootRoute
     }
     '/superadmin/ruangan/': {
@@ -162,6 +208,20 @@ declare module '@tanstack/react-router' {
       path: '/superadmin/alat-lab/update-alat-lab/$id'
       fullPath: '/superadmin/alat-lab/update-alat-lab/$id'
       preLoaderRoute: typeof SuperadminAlatLabUpdateAlatLabIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/badge/detail-badge/$id': {
+      id: '/superadmin/badge/detail-badge/$id'
+      path: '/superadmin/badge/detail-badge/$id'
+      fullPath: '/superadmin/badge/detail-badge/$id'
+      preLoaderRoute: typeof SuperadminBadgeDetailBadgeIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/superadmin/badge/update-badge/$id': {
+      id: '/superadmin/badge/update-badge/$id'
+      path: '/superadmin/badge/update-badge/$id'
+      fullPath: '/superadmin/badge/update-badge/$id'
+      preLoaderRoute: typeof SuperadminBadgeUpdateBadgeIdImport
       parentRoute: typeof rootRoute
     }
     '/superadmin/ruangan/detail-ruangan/$id': {
@@ -188,11 +248,15 @@ export interface FileRoutesByFullPath {
   '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
   '/superadmin': typeof SuperadminIndexRoute
   '/superadmin/alat-lab/tambah-alat-lab': typeof SuperadminAlatLabTambahAlatLabRoute
+  '/superadmin/badge/tambah-badge': typeof SuperadminBadgeTambahBadgeRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
   '/superadmin/alat-lab': typeof SuperadminAlatLabIndexRoute
+  '/superadmin/badge': typeof SuperadminBadgeIndexRoute
   '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
   '/superadmin/alat-lab/detail-alat-lab/$id': typeof SuperadminAlatLabDetailAlatLabIdRoute
   '/superadmin/alat-lab/update-alat-lab/$id': typeof SuperadminAlatLabUpdateAlatLabIdRoute
+  '/superadmin/badge/detail-badge/$id': typeof SuperadminBadgeDetailBadgeIdRoute
+  '/superadmin/badge/update-badge/$id': typeof SuperadminBadgeUpdateBadgeIdRoute
   '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -202,11 +266,15 @@ export interface FileRoutesByTo {
   '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
   '/superadmin': typeof SuperadminIndexRoute
   '/superadmin/alat-lab/tambah-alat-lab': typeof SuperadminAlatLabTambahAlatLabRoute
+  '/superadmin/badge/tambah-badge': typeof SuperadminBadgeTambahBadgeRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
   '/superadmin/alat-lab': typeof SuperadminAlatLabIndexRoute
+  '/superadmin/badge': typeof SuperadminBadgeIndexRoute
   '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
   '/superadmin/alat-lab/detail-alat-lab/$id': typeof SuperadminAlatLabDetailAlatLabIdRoute
   '/superadmin/alat-lab/update-alat-lab/$id': typeof SuperadminAlatLabUpdateAlatLabIdRoute
+  '/superadmin/badge/detail-badge/$id': typeof SuperadminBadgeDetailBadgeIdRoute
+  '/superadmin/badge/update-badge/$id': typeof SuperadminBadgeUpdateBadgeIdRoute
   '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -217,11 +285,15 @@ export interface FileRoutesById {
   '/peminjaman-ruangan': typeof PeminjamanRuanganRoute
   '/superadmin/': typeof SuperadminIndexRoute
   '/superadmin/alat-lab/tambah-alat-lab': typeof SuperadminAlatLabTambahAlatLabRoute
+  '/superadmin/badge/tambah-badge': typeof SuperadminBadgeTambahBadgeRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
   '/superadmin/alat-lab/': typeof SuperadminAlatLabIndexRoute
+  '/superadmin/badge/': typeof SuperadminBadgeIndexRoute
   '/superadmin/ruangan/': typeof SuperadminRuanganIndexRoute
   '/superadmin/alat-lab/detail-alat-lab/$id': typeof SuperadminAlatLabDetailAlatLabIdRoute
   '/superadmin/alat-lab/update-alat-lab/$id': typeof SuperadminAlatLabUpdateAlatLabIdRoute
+  '/superadmin/badge/detail-badge/$id': typeof SuperadminBadgeDetailBadgeIdRoute
+  '/superadmin/badge/update-badge/$id': typeof SuperadminBadgeUpdateBadgeIdRoute
   '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -233,11 +305,15 @@ export interface FileRouteTypes {
     | '/peminjaman-ruangan'
     | '/superadmin'
     | '/superadmin/alat-lab/tambah-alat-lab'
+    | '/superadmin/badge/tambah-badge'
     | '/superadmin/ruangan/tambah-ruangan'
     | '/superadmin/alat-lab'
+    | '/superadmin/badge'
     | '/superadmin/ruangan'
     | '/superadmin/alat-lab/detail-alat-lab/$id'
     | '/superadmin/alat-lab/update-alat-lab/$id'
+    | '/superadmin/badge/detail-badge/$id'
+    | '/superadmin/badge/update-badge/$id'
     | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -246,11 +322,15 @@ export interface FileRouteTypes {
     | '/peminjaman-ruangan'
     | '/superadmin'
     | '/superadmin/alat-lab/tambah-alat-lab'
+    | '/superadmin/badge/tambah-badge'
     | '/superadmin/ruangan/tambah-ruangan'
     | '/superadmin/alat-lab'
+    | '/superadmin/badge'
     | '/superadmin/ruangan'
     | '/superadmin/alat-lab/detail-alat-lab/$id'
     | '/superadmin/alat-lab/update-alat-lab/$id'
+    | '/superadmin/badge/detail-badge/$id'
+    | '/superadmin/badge/update-badge/$id'
     | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   id:
@@ -259,11 +339,15 @@ export interface FileRouteTypes {
     | '/peminjaman-ruangan'
     | '/superadmin/'
     | '/superadmin/alat-lab/tambah-alat-lab'
+    | '/superadmin/badge/tambah-badge'
     | '/superadmin/ruangan/tambah-ruangan'
     | '/superadmin/alat-lab/'
+    | '/superadmin/badge/'
     | '/superadmin/ruangan/'
     | '/superadmin/alat-lab/detail-alat-lab/$id'
     | '/superadmin/alat-lab/update-alat-lab/$id'
+    | '/superadmin/badge/detail-badge/$id'
+    | '/superadmin/badge/update-badge/$id'
     | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   fileRoutesById: FileRoutesById
@@ -274,11 +358,15 @@ export interface RootRouteChildren {
   PeminjamanRuanganRoute: typeof PeminjamanRuanganRoute
   SuperadminIndexRoute: typeof SuperadminIndexRoute
   SuperadminAlatLabTambahAlatLabRoute: typeof SuperadminAlatLabTambahAlatLabRoute
+  SuperadminBadgeTambahBadgeRoute: typeof SuperadminBadgeTambahBadgeRoute
   SuperadminRuanganTambahRuanganRoute: typeof SuperadminRuanganTambahRuanganRoute
   SuperadminAlatLabIndexRoute: typeof SuperadminAlatLabIndexRoute
+  SuperadminBadgeIndexRoute: typeof SuperadminBadgeIndexRoute
   SuperadminRuanganIndexRoute: typeof SuperadminRuanganIndexRoute
   SuperadminAlatLabDetailAlatLabIdRoute: typeof SuperadminAlatLabDetailAlatLabIdRoute
   SuperadminAlatLabUpdateAlatLabIdRoute: typeof SuperadminAlatLabUpdateAlatLabIdRoute
+  SuperadminBadgeDetailBadgeIdRoute: typeof SuperadminBadgeDetailBadgeIdRoute
+  SuperadminBadgeUpdateBadgeIdRoute: typeof SuperadminBadgeUpdateBadgeIdRoute
   SuperadminRuanganDetailRuanganIdRoute: typeof SuperadminRuanganDetailRuanganIdRoute
   SuperadminRuanganUpdateRuanganIdRoute: typeof SuperadminRuanganUpdateRuanganIdRoute
 }
@@ -288,11 +376,15 @@ const rootRouteChildren: RootRouteChildren = {
   PeminjamanRuanganRoute: PeminjamanRuanganRoute,
   SuperadminIndexRoute: SuperadminIndexRoute,
   SuperadminAlatLabTambahAlatLabRoute: SuperadminAlatLabTambahAlatLabRoute,
+  SuperadminBadgeTambahBadgeRoute: SuperadminBadgeTambahBadgeRoute,
   SuperadminRuanganTambahRuanganRoute: SuperadminRuanganTambahRuanganRoute,
   SuperadminAlatLabIndexRoute: SuperadminAlatLabIndexRoute,
+  SuperadminBadgeIndexRoute: SuperadminBadgeIndexRoute,
   SuperadminRuanganIndexRoute: SuperadminRuanganIndexRoute,
   SuperadminAlatLabDetailAlatLabIdRoute: SuperadminAlatLabDetailAlatLabIdRoute,
   SuperadminAlatLabUpdateAlatLabIdRoute: SuperadminAlatLabUpdateAlatLabIdRoute,
+  SuperadminBadgeDetailBadgeIdRoute: SuperadminBadgeDetailBadgeIdRoute,
+  SuperadminBadgeUpdateBadgeIdRoute: SuperadminBadgeUpdateBadgeIdRoute,
   SuperadminRuanganDetailRuanganIdRoute: SuperadminRuanganDetailRuanganIdRoute,
   SuperadminRuanganUpdateRuanganIdRoute: SuperadminRuanganUpdateRuanganIdRoute,
 }
@@ -311,11 +403,15 @@ export const routeTree = rootRoute
         "/peminjaman-ruangan",
         "/superadmin/",
         "/superadmin/alat-lab/tambah-alat-lab",
+        "/superadmin/badge/tambah-badge",
         "/superadmin/ruangan/tambah-ruangan",
         "/superadmin/alat-lab/",
+        "/superadmin/badge/",
         "/superadmin/ruangan/",
         "/superadmin/alat-lab/detail-alat-lab/$id",
         "/superadmin/alat-lab/update-alat-lab/$id",
+        "/superadmin/badge/detail-badge/$id",
+        "/superadmin/badge/update-badge/$id",
         "/superadmin/ruangan/detail-ruangan/$id",
         "/superadmin/ruangan/update-ruangan/$id"
       ]
@@ -332,11 +428,17 @@ export const routeTree = rootRoute
     "/superadmin/alat-lab/tambah-alat-lab": {
       "filePath": "superadmin/alat-lab/tambah-alat-lab.tsx"
     },
+    "/superadmin/badge/tambah-badge": {
+      "filePath": "superadmin/badge/tambah-badge.tsx"
+    },
     "/superadmin/ruangan/tambah-ruangan": {
       "filePath": "superadmin/ruangan/tambah-ruangan.tsx"
     },
     "/superadmin/alat-lab/": {
       "filePath": "superadmin/alat-lab/index.tsx"
+    },
+    "/superadmin/badge/": {
+      "filePath": "superadmin/badge/index.tsx"
     },
     "/superadmin/ruangan/": {
       "filePath": "superadmin/ruangan/index.tsx"
@@ -346,6 +448,12 @@ export const routeTree = rootRoute
     },
     "/superadmin/alat-lab/update-alat-lab/$id": {
       "filePath": "superadmin/alat-lab/update-alat-lab.$id.tsx"
+    },
+    "/superadmin/badge/detail-badge/$id": {
+      "filePath": "superadmin/badge/detail-badge.$id.tsx"
+    },
+    "/superadmin/badge/update-badge/$id": {
+      "filePath": "superadmin/badge/update-badge.$id.tsx"
     },
     "/superadmin/ruangan/detail-ruangan/$id": {
       "filePath": "superadmin/ruangan/detail-ruangan.$id.tsx"
