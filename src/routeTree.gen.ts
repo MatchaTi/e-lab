@@ -17,6 +17,7 @@ import { Route as SuperadminIndexImport } from './routes/superadmin/index'
 import { Route as SuperadminRuanganIndexImport } from './routes/superadmin/ruangan/index'
 import { Route as SuperadminRuanganTambahRuanganImport } from './routes/superadmin/ruangan/tambah-ruangan'
 import { Route as SuperadminRuanganUpdateRuanganIdImport } from './routes/superadmin/ruangan/update-ruangan.$id'
+import { Route as SuperadminRuanganDetailRuanganIdImport } from './routes/superadmin/ruangan/detail-ruangan.$id'
 
 // Create/Update Routes
 
@@ -55,6 +56,13 @@ const SuperadminRuanganUpdateRuanganIdRoute =
   SuperadminRuanganUpdateRuanganIdImport.update({
     id: '/superadmin/ruangan/update-ruangan/$id',
     path: '/superadmin/ruangan/update-ruangan/$id',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const SuperadminRuanganDetailRuanganIdRoute =
+  SuperadminRuanganDetailRuanganIdImport.update({
+    id: '/superadmin/ruangan/detail-ruangan/$id',
+    path: '/superadmin/ruangan/detail-ruangan/$id',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -97,6 +105,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SuperadminRuanganIndexImport
       parentRoute: typeof rootRoute
     }
+    '/superadmin/ruangan/detail-ruangan/$id': {
+      id: '/superadmin/ruangan/detail-ruangan/$id'
+      path: '/superadmin/ruangan/detail-ruangan/$id'
+      fullPath: '/superadmin/ruangan/detail-ruangan/$id'
+      preLoaderRoute: typeof SuperadminRuanganDetailRuanganIdImport
+      parentRoute: typeof rootRoute
+    }
     '/superadmin/ruangan/update-ruangan/$id': {
       id: '/superadmin/ruangan/update-ruangan/$id'
       path: '/superadmin/ruangan/update-ruangan/$id'
@@ -115,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/superadmin': typeof SuperadminIndexRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
   '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
+  '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
@@ -124,6 +140,7 @@ export interface FileRoutesByTo {
   '/superadmin': typeof SuperadminIndexRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
   '/superadmin/ruangan': typeof SuperadminRuanganIndexRoute
+  '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
@@ -134,6 +151,7 @@ export interface FileRoutesById {
   '/superadmin/': typeof SuperadminIndexRoute
   '/superadmin/ruangan/tambah-ruangan': typeof SuperadminRuanganTambahRuanganRoute
   '/superadmin/ruangan/': typeof SuperadminRuanganIndexRoute
+  '/superadmin/ruangan/detail-ruangan/$id': typeof SuperadminRuanganDetailRuanganIdRoute
   '/superadmin/ruangan/update-ruangan/$id': typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
@@ -145,6 +163,7 @@ export interface FileRouteTypes {
     | '/superadmin'
     | '/superadmin/ruangan/tambah-ruangan'
     | '/superadmin/ruangan'
+    | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -153,6 +172,7 @@ export interface FileRouteTypes {
     | '/superadmin'
     | '/superadmin/ruangan/tambah-ruangan'
     | '/superadmin/ruangan'
+    | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   id:
     | '__root__'
@@ -161,6 +181,7 @@ export interface FileRouteTypes {
     | '/superadmin/'
     | '/superadmin/ruangan/tambah-ruangan'
     | '/superadmin/ruangan/'
+    | '/superadmin/ruangan/detail-ruangan/$id'
     | '/superadmin/ruangan/update-ruangan/$id'
   fileRoutesById: FileRoutesById
 }
@@ -171,6 +192,7 @@ export interface RootRouteChildren {
   SuperadminIndexRoute: typeof SuperadminIndexRoute
   SuperadminRuanganTambahRuanganRoute: typeof SuperadminRuanganTambahRuanganRoute
   SuperadminRuanganIndexRoute: typeof SuperadminRuanganIndexRoute
+  SuperadminRuanganDetailRuanganIdRoute: typeof SuperadminRuanganDetailRuanganIdRoute
   SuperadminRuanganUpdateRuanganIdRoute: typeof SuperadminRuanganUpdateRuanganIdRoute
 }
 
@@ -180,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   SuperadminIndexRoute: SuperadminIndexRoute,
   SuperadminRuanganTambahRuanganRoute: SuperadminRuanganTambahRuanganRoute,
   SuperadminRuanganIndexRoute: SuperadminRuanganIndexRoute,
+  SuperadminRuanganDetailRuanganIdRoute: SuperadminRuanganDetailRuanganIdRoute,
   SuperadminRuanganUpdateRuanganIdRoute: SuperadminRuanganUpdateRuanganIdRoute,
 }
 
@@ -198,6 +221,7 @@ export const routeTree = rootRoute
         "/superadmin/",
         "/superadmin/ruangan/tambah-ruangan",
         "/superadmin/ruangan/",
+        "/superadmin/ruangan/detail-ruangan/$id",
         "/superadmin/ruangan/update-ruangan/$id"
       ]
     },
@@ -215,6 +239,9 @@ export const routeTree = rootRoute
     },
     "/superadmin/ruangan/": {
       "filePath": "superadmin/ruangan/index.tsx"
+    },
+    "/superadmin/ruangan/detail-ruangan/$id": {
+      "filePath": "superadmin/ruangan/detail-ruangan.$id.tsx"
     },
     "/superadmin/ruangan/update-ruangan/$id": {
       "filePath": "superadmin/ruangan/update-ruangan.$id.tsx"
