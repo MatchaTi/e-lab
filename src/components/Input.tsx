@@ -1,4 +1,6 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
+import clsx from 'clsx';
+import Fieldset from './Fieldset';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'file' | 'date';
@@ -10,12 +12,12 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export default function Input({ type = 'text', label, className = '', placeholder, icon, ...props }: InputProps) {
     return (
-        <fieldset className='w-full fieldset'>
-            <legend className='text-sm fieldset-legend'>{label ? label : 'Text'}</legend>
-            <label className='w-full input'>
+        <Fieldset className='w-full'>
+            <Fieldset.Legend>{label ? label : 'Text'}</Fieldset.Legend>
+            <Fieldset.Body className='w-full input'>
                 <Icon icon={icon} />
-                <input className={`w-full ${className}`} type={type} placeholder={placeholder} {...props} />
-            </label>
-        </fieldset>
+                <input className={clsx('w-full', className)} type={type} placeholder={placeholder} {...props} />
+            </Fieldset.Body>
+        </Fieldset>
     );
 }
