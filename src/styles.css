@@ -1,15 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import "tailwindcss";
 
-body {
-  @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --font-quicksand: 'Quicksand', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@plugin 'daisyui';
+
+@plugin 'daisyui/theme' {
+  name: 'e-lab-light';
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+
+  --color-base-100: #F1F5F9;
+  --color-base-200: #ffffff;
+  --color-base-300: #e2e8f0;
+  --color-base-content: #475569;
+  --color-primary: #3388BB;
+  --color-primary-content: #f1f5f9;
+  --color-secondary: #58CC02;
+  --color-secondary-content: #f1f5f9;
+  --color-accent: #FFD900;
+  --color-accent-content: #020617;
+  --color-neutral: #475569;
+  --color-neutral-content: #f1f5f9;
+  --color-info: #3b82f6;
+  --color-info-content: #ffffff;
+  --color-success: #58CC02;
+  --color-success-content: #ffffff;
+  --color-warning: #FFD900;
+  --color-warning-content: #020617;
+  --color-error: #e67e80;
+  --color-error-content: #ffffff;
+}
+
+* {
+  @apply font-quicksand;
 }
